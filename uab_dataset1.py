@@ -60,15 +60,15 @@ class CleanAndRemoveJunk():
         new_df = df_cleaned.dropna()
         # print(df_cleaned.head(50))
 
-    def delete_junky_responses(self, filename):
+    def delete_junky_responses(self, filename):   ### function will delete raws that don't contain email adresses
         print("Deleting junks")
 
         df = pd.read_excel(filename)        
         df_cleaned = df[["Name", "Email Address", "Open-Ended Response"]]
         new_df = df_cleaned.dropna()
 
-        if new_df_filtered == new_df[~new_df["Email Address"].str.contains("@")]
-            drop
+        if new_df_filtered == new_df[~new_df["Email Address"].str.contains("@")]     ### still working on function that will delete raws with responses that                   
+            drop                                                                     ### don't have @ symbol in it
         print(new_df_filtered.head(50))
 
 
@@ -141,7 +141,7 @@ if __name__ == '__main__':
 
 
 
-### Create boolean methid did not work
+### Create boolean method did not work
     # def create_bolean(self, filename):   
     #     df = pd.read_excel(filename)        
     #     df_cleaned = df[["Name", "Email Address", "Open-Ended Response"]]
