@@ -27,18 +27,16 @@ class UabExplorer():
         print("Dropping blank rows")
         new_df = new_df.dropna()
 
-        # new_df = delete_junky_responses(new_df)
+        print("Filtering invalid email rows")
+        new_df = delete_junky_responses(new_df)
 
         # Assign cleaned df to class variable
         self.df_cleaned = new_df
 
     # Delete rows that don't contain email adresses
     def delete_junky_responses(self, df):
-        print("Deleting junks")
-        new_df = df[~df["Email Address"].str.contains("@")]
-        # if new_df_filtered == new_df[~new_df["Email Address"].str.contains("@")]     ### still working on function that will delete raws with responses that
-        #     drop                                                                     ### don't have @ symbol in it
-        print(new_df_filtered.head(50))
+        new_df = df[~df["Email Address"].str.contains("@")]                                          ### don't have @ symbol in it
+        print(new_df.head(5))
         return new_df
 
     def write_cleaned_df_to_xls(self, output_file_name):
@@ -49,7 +47,6 @@ class UabExplorer():
         print("File is being created: " + output_file_name)
         self.df_cleaned.to_excel(output_file_name)
         return('DataFrame written to Excel File successfully.')
-    
 
 if __name__ == '__main__':
     ## STEP 1 - open dataset and explore
