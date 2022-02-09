@@ -67,39 +67,3 @@ if __name__ == '__main__':
     ##STEP 4 - create excel file with cleaned data
     output_file_name = 'Userdata_cleaned.xlsx'
     uab_explorer.write_cleaned_df_to_xls(output_file_name)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Create boolean method did not work
-    # def create_bolean(self, filename):   
-    #     df = pd.read_excel(filename)        
-    #     df_cleaned = df[["Name", "Email Address", "Open-Ended Response"]]
-    #     df_cleaned[df_cleaned["Email Address"]=="@"]
-    #     print(df_cleaned.head())
-
-
-
-
-
-    #print(approach_two(filename))
-    #print(select_columns(filename))
-    #print(drop_blanks(filename))
-    #print(count_number_of_raws(filename))
-    #print(create_excel_file(filename))
