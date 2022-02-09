@@ -1,0 +1,105 @@
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.pyplot
+
+class UabExplorer():
+    def __init__(self, filename):
+        self.df = pd.read_excel(filename)
+        self.df_cleaned = None
+
+        self.needed_columns = ["Name", "Email Address", "Open-Ended Response"]
+
+    def get_raw_df(self):
+        return self.df
+
+    def get_cleaned_df(self):
+        return self.df_cleaned
+
+    def get_list_of_columns(self):
+        return list(self.df.columns)
+
+    def clean_data(self):
+        # Drop unwanted columns
+        print("Selecting needed columns: " + ', '.join(needed_columns))
+        new_df = self.df[self.needed_columns]
+
+        print("Dropping blank rows")
+        new_df = new_df.dropna()
+
+        # new_df = delete_junky_responses(new_df)
+
+        # Assign cleaned df to class variable
+        self.df_cleaned = new_df
+
+    # Delete rows that don't contain email adresses
+    def delete_junky_responses(self, df):
+        print("Deleting junks")
+        new_df = df[~df["Email Address"].str.contains("@")]
+        # if new_df_filtered == new_df[~new_df["Email Address"].str.contains("@")]     ### still working on function that will delete raws with responses that
+        #     drop                                                                     ### don't have @ symbol in it
+        print(new_df_filtered.head(50))
+        return new_df
+
+    def write_cleaned_df_to_xls(self, output_file_name):
+        if not self.df_cleaned:
+            print("self.df_cleaned has not been assigned. You need to run `clean_data()`")
+            return
+
+        print("File is being created: " + output_file_name)
+        self.df_cleaned.to_excel(output_file_name)
+        return('DataFrame written to Excel File successfully.')
+    
+
+if __name__ == '__main__':
+    ## STEP 1 - open dataset and explore
+    filename = "UAB_dataset1.xlsx"
+    uab_explorer = UabExplorer(filename)
+
+    # Directly print wanted output here
+    print(uab_explorer.get_df().columns)
+
+    ## STEP 2 - select needed columns "Name" "Email" "ID" (which is named as "Open-ended response")
+    ## STEP 3 - remove irrelevant raws and junky data.
+    ### 1) Remove blank rows (NAN) 2) Identify and remove rows that contain not valid emails
+    uab_explorer.clean_data()
+
+    ##STEP 4 - create excel file with cleaned data
+    output_file_name = 'Userdata_cleaned.xlsx'
+    uab_explorer.write_cleaned_df_to_xls(output_file_name)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Create boolean method did not work
+    # def create_bolean(self, filename):   
+    #     df = pd.read_excel(filename)        
+    #     df_cleaned = df[["Name", "Email Address", "Open-Ended Response"]]
+    #     df_cleaned[df_cleaned["Email Address"]=="@"]
+    #     print(df_cleaned.head())
+
+
+
+
+
+    #print(approach_two(filename))
+    #print(select_columns(filename))
+    #print(drop_blanks(filename))
+    #print(count_number_of_raws(filename))
+    #print(create_excel_file(filename))
